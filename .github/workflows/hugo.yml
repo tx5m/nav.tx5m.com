@@ -1,0 +1,44 @@
+name: github pages
+
+# on 是 Actions 的触发条件，这里的配置说明当 main 分支有提交的时候，根据这个配置文件执行
+on:
+  push:
+    branches:
+      - main  # Set a branch that will trigger a deployment
+  pull_request:
+
+# jobs 是要执行的任务，我们看到他要执行 deploy
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04 # 运行环境
+    steps:  # 执行步骤
+      # checkout 分支
+      - uses: actions/checkout@v3
+        with:
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      # 安装 hugo
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          # extended: true
+
+      # 编译站点
+      - name: Build
+        run: hugo --minify
+ 
+      # 将站点发布到对应分支
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          external_repository: tx5m/tx5m.github.io # 修改为你的 GitHub Pages 仓库
+          publish_dir: ./public
+          keep_files: false # remove existing files
+          publish_branch: main  # deploying branch
+          # 如果使用自定义域名，还需要添加下面一行配置 CNAME
+          cname: tx5m.com
+          commit_message: ${{ github.event.head_commit.message }}

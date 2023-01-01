@@ -1,0 +1,40 @@
+baseURL = "https://nav.tx5m.com"
+disablePathToLower = true
+hasCJKLanguage = true
+languageCode = "zh-CN"
+preserveTaxonomyNames = true
+publishDir = "public"
+theme = "WebStack-Hugo"
+title = "网址导航"
+
+[params]
+about = "./about" # 左侧导航栏的"关于导航"页面(./about)
+author = "撸码观花" 
+baiduhmid = 'e3335a59011d04ad3f2b3ef0ffe9cd38' # 百度统计 hm.src 的 ID
+defaultLogo = "assets/images/logos/default.webp" # logo图片资源不存在或者错误时, 默认显示的logo; 该参数如为空,将会一直加载对应的logo,直至成功
+description = "网址导航" 
+enablePreLoad = true # 网站完全打开前预加载动画
+expandSidebar = true # 默认展开左侧边导航栏
+logosPath = "assets/images/logos" # 网站每个导航地址logo存放地址
+repository = "https://github.com/shenweiyan/WebStack-Hugo" 
+siteurl = "./" 
+textPreLoad = "网址导航" # 预加载的动画文字, 只有当enablePreLoad=true时生效
+upload = "./about" # 左侧导航栏的"网站提交"
+
+[params.qweather]
+key = "085791e805a24491b43b06cf58ab31e7"
+
+[params.images]
+
+favicon = "assets/images/favicon.png" 
+logoCollapseDark = "assets/images/code.png" 
+logoCollapseLight = "assets/images/code.png" 
+logoExpandDark = "assets/images/code-expand-dark.png" 
+logoExpandLight = "assets/images/code-expand-light.png" 
+searchImageD = "assets/images/bg-dark.jpg" #搜索部分深色背景图
+searchImageL = "assets/images/bg-light.jpg" #搜索部分浅色背景图
+[markup.goldmark.renderer]
+unsafe = true
+
+[params.footer]
+copyright = '本站内容源自互联网，如有内容侵犯了你的权益，请联系删除相关内容。 <br/>&copy; 2021 - {year} By [撸码观花](https://liaocj.com)<br/>'
